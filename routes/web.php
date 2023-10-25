@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AddImageController as AddImageController;
+use App\Http\Controllers\ShowImageController as ShowImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::get('/', [HomeController::class, 'home'])->name("homePage");
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ShowImageController::class, 'showImages'])->name("image.show");
+Route::get('/addImage', [AddImageController::class, 'addImage'])->name("image.add");
+
+Route::post('/storeImage', [AddImageController::class, 'storeImage'])->name("image.store");
